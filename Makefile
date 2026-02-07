@@ -58,6 +58,14 @@ build:
 build-remote: remote-setup
 	@$(TOOL) build $(ARGS) $(REMOTE_ARGS)
 
+.PHONY: build-vm
+build-vm:
+	@$(TOOL) build $(ARGS)
+
+.PHONY: build-vm-remote
+build-vm-remote: remote-setup
+	@$(TOOL) build $(ARGS) $(REMOTE_ARGS)
+
 .PHONY: switch
 switch:
 	@$(TOOL) switch $(ARGS)
