@@ -2,6 +2,7 @@
 	minego.gui._.niri = { host, ... }: {
 		includes = [
 			minego.gui
+			minego.gui._.dms
 			minego.gui._.mpvpaper
 			minego.gui._.sway-idle-inhibit
 			minego.gui._.niri-touch-gestures
@@ -330,7 +331,11 @@
 			];
 
 			# Open the firewall port for rquickshare
-			networking.firewall.allowedTCPPorts = [ 12345 ];
+			networking.firewall.allowedTCPPorts				= [ 12345 ];
+
+			# Enable gnome keyring
+			services.gnome.gnome-keyring.enable				= true;
+			security.pam.services.niri.enableGnomeKeyring	= true;
 		};
 	};
 }
