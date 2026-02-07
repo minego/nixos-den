@@ -10,6 +10,8 @@
 				compositor.name	= "niri";
 				configHome		= "/home/m"; # Use DMS config from user m
 			};
+
+			security.pam.services.greetd.enableGnomeKeyring	= true;
 		};
 	};
 }
