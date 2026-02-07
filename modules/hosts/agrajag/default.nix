@@ -11,6 +11,9 @@
 			minego.hardware._.fingerprint
 
 			minego.secrets._.mosquitto
+
+			minego.networking._.networkManager
+			minego.networking._.tailscale._.client
 		];
 
 		nixos = { ... }: {
