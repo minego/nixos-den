@@ -60,11 +60,11 @@ build-remote: remote-setup
 
 .PHONY: build-vm
 build-vm:
-	@$(TOOL) build $(ARGS)
+	@$(TOOL) build-vm $(ARGS)
 
 .PHONY: build-vm-remote
 build-vm-remote: remote-setup
-	@$(TOOL) build $(ARGS) $(REMOTE_ARGS)
+	@$(TOOL) build-vm $(ARGS) $(REMOTE_ARGS)
 
 .PHONY: switch
 switch:
