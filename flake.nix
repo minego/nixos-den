@@ -5,19 +5,64 @@
 		(inputs.import-tree ./modules);
 
 	inputs = {
-		nixpkgs.url			= "github:NixOS/nixpkgs/nixos-unstable";
+		nixpkgs = {
+			url = "github:NixOS/nixpkgs/nixos-unstable";
+		};
 
-		flake-parts.url		= "github:hercules-ci/flake-parts";
-		import-tree.url		= "git+https://tangled.org/oeiuwq.com/import-tree";
-		den.url				= "git+https://tangled.org/oeiuwq.com/den";
-		flake-aspects.url	= "git+https://tangled.org/oeiuwq.com/flake-aspects";
-		nixos-hardware.url	= "github:nixos/nixos-hardware";
-		nixvim.url			= "git+https://codeberg.org/minego/nixvim";
+		flake-parts = {
+			url = "github:hercules-ci/flake-parts";
+		};
 
-		mackeys.url			= "git+https://codeberg.org/minego/mackeys";
-		swapmods.url		= "git+https://codeberg.org/minego/swapmods";
-		chrkbd.url			= "git+https://codeberg.org/minego/chrkbd";
-		osk.url				= "git+https://codeberg.org/minego/qs-osk";
+		import-tree = {
+			url = "git+https://tangled.org/oeiuwq.com/import-tree";
+		};
+
+		den = {
+			url = "git+https://tangled.org/oeiuwq.com/den";
+		};
+
+		flake-aspects = {
+			url = "git+https://tangled.org/oeiuwq.com/flake-aspects";
+		};
+
+		nixos-hardware = {
+			url = "github:nixos/nixos-hardware";
+		};
+
+		nixvim = {
+			url = "git+https://codeberg.org/minego/nixvim";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
+
+		mackeys = {
+			url = "git+https://codeberg.org/minego/mackeys";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
+
+		swapmods = {
+			url = "git+https://codeberg.org/minego/swapmods";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
+
+		chrkbd = {
+			url = "git+https://codeberg.org/minego/chrkbd";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
+
+		osk = {
+			url = "git+https://codeberg.org/minego/qs-osk";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
+
+		jovian-nixos = {
+			url = "github:Jovian-Experiments/Jovian-NixOS";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
+
+		agenix = {
+			url = "github:ryantm/agenix";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 
 		nix-your-shell = {
 			url	= "github:MercuryTechnologies/nix-your-shell";

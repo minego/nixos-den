@@ -1,10 +1,10 @@
-{ __findFile, ... }: {
+{ den, minego, ... }: {
 	den.aspects.m = {
 		includes = [
-			<den/primary-user>
-			<minego/shell>
-			<minego/apps/coreutils>
-			<minego/apps/dev>
+			den.primary-user
+			minego.shell
+			minego.apps._.coreutils
+			minego.apps._.dev
 		];
 
 		nixos.users.users.m.extraGroups = [

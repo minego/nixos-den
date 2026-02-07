@@ -5,8 +5,9 @@
 		<minego/apps/nixvim>
 
 		<minego/apps/appimage>
+		<minego/apps/kitty>
+		<minego/apps/chromium>
 
-		# <minego/apps/kitty>
 		# <minego/apps/git>
 		# <minego/apps/nh>
 		# <minego/apps/nix-tools>

@@ -1,5 +1,5 @@
 { inputs, minego, ... }: {
-	minego.gui._.niri = { host, user, ... }: {
+	minego.gui._.niri = { host, ... }: {
 		includes = [
 			minego.gui
 			minego.gui._.mpvpaper

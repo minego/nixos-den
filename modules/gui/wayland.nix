@@ -68,7 +68,7 @@
 				udiskie
 				rquickshare
 
-				signal-desktop
+				# signal-desktop
 				orca-slicer
 
 				qs-osk
@@ -77,8 +77,8 @@
 				(pkgs.makeDesktopItem {
 					name		= "rotate";
 					desktopName = "rotate";
-					exec		= ./../scripts/rotate;
-					icon		= ./rotate.png;
+					exec		= ./../../scripts/rotate;
+					icon		= ./../../assets/rotate.png;
 				})
 			] ++ lib.optionals (stdenv.isLinux && stdenv.isx86_64) [
 				# These aren't available on aarch64 linux

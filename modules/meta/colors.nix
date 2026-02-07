@@ -4,7 +4,23 @@ let
 in
 {
 	# This module is base for all user configs.
-	den.base.host = { ... }: {
+	den.base.host = { ... }: let
+		colorsOption = mkOption {
+			type = types.submodule {
+				options = {
+					black	= mkOption { type = types.str; };
+					red		= mkOption { type = types.str; };
+					green	= mkOption { type = types.str; };
+					yellow	= mkOption { type = types.str; };
+					blue	= mkOption { type = types.str; };
+					magenta	= mkOption { type = types.str; };
+					cyan	= mkOption { type = types.str; };
+					white	= mkOption { type = types.str; };
+					grey	= mkOption { type = types.str; };
+				};
+			};
+		};
+	in {
 		options.colors = mkOption {
 			default = {
 				light = {
@@ -32,20 +48,12 @@ in
 				};
 			};
 
-			type = types.attrsOf (
-				types.submodule {
-					options = {
-						light = mkOption {
-							type		= types.lazyAttrsOf types.raw;
-							default		= { };
-						};
-						dark = mkOption {
-							type		= types.lazyAttrsOf types.raw;
-							default		= { };
-						};
-					};
-				}
-			);
+			type = types.submodule {
+				options = {
+					light	= colorsOption;
+					dark	= colorsOption;
+				};
+			};
 		};
 	};
 }

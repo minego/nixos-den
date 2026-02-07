@@ -1,7 +1,9 @@
-{ __findFile, ... }: {
+{ __findFile, den, ... }: {
 	den.default = {
 		includes = [
-			<den/define-user>
+			den._.define-user
+			den._.self'
+			den._.inputs'
 			({ host, ... }: {
 				${host.class}.networking.hostName = host.name;
 			})

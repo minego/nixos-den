@@ -57,7 +57,7 @@
 				(stdenv.mkDerivation {
 					name		= "my-scripts";
 					buildInputs	= [ bash ];
-					src			= ./scripts;
+					src			= ./../../scripts;
 					installPhase = ''
 						mkdir -p $out/bin
 						cp * $out/bin/

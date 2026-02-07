@@ -1,14 +1,16 @@
 # agrajag - MinisForums V3 Tablet PC
 
-{ __findFile, config, inputs, ... }: {
+{ minego, config, inputs, ... }: {
 	hostConfig.agrajag = {};
 
 	den.aspects.agrajag = {
 		includes = [
-			<minego/laptop>
-			<minego/gaming/max>
-			<minego/hardware/amdgpu>
-			<minego/hardware/fingerprint>
+			minego.laptop
+			minego.gaming._.max
+			minego.hardware._.amdgpu
+			minego.hardware._.fingerprint
+
+			minego.secrets._.mosquitto
 		];
 
 		nixos = { ... }: {
