@@ -108,7 +108,7 @@ ifeq ($(origin REMOTE_HOST), undefined)
 	@echo
 	@false
 endif
-REMOTE_ARGS := --build-host ${REMOTE_HOST} --use-substitutes --sudo
+REMOTE_ARGS := --build-host ${REMOTE_HOST}
 
 .PHONY: check
 check:
