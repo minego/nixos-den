@@ -28,6 +28,9 @@
 					{
 						includeIf = let
 							venafi-ssh-config = pkgs.writeText "gitconfig" ''
+								[diff]
+								external = ${pkgs.difftastic}/bin/difft
+
 								[user]
 								email = "micah.gorrell@cyberark.com";
 								name = "Micah N Gorrell";
@@ -41,8 +44,6 @@
 						};
 					}];
 				};
-
-				difftastic.enable				= true;
 			};
 		};
 	};

@@ -6,13 +6,8 @@ HOST		:= $(shell hostname)
 FLAKES		:= $(wildcard deps/*/flake.nix)
 FLAKE_DIRS	:= $(dir $(FLAKES))
 
-ifeq ($(UNAME_S),Linux)
-	TOOL	:= sudo nixos-rebuild
-	ARGS	:= --flake ./ --log-format bar --show-trace
-endif
-
-# Do I still need this? I'll have to test on asahi...
-ARGS		:= ${ARGS} --impure -v
+TOOL		:= nh os
+ARGS		:= ./
 
 # First, so that it is the default target
 .PHONY: all

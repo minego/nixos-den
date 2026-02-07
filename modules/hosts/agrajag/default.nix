@@ -6,6 +6,7 @@
 	den.aspects.agrajag = {
 		includes = [
 			minego.laptop
+
 			minego.gaming._.max
 			minego.hardware._.amdgpu
 			minego.hardware._.fingerprint
@@ -50,5 +51,7 @@
 
 	den.hosts.x86_64-linux.agrajag = {
 		inherit (config.hostConfig.agrajag) displays primaryDisplay;
+
+		users.m = {};
 	};
 }

@@ -2,14 +2,12 @@
 	minego.workstation.includes = [
 		<minego/shell>
 		<minego/apps/dev>
+		<minego/apps/dev>
+		<minego/apps/git>
 		<minego/apps/nixvim>
 
 		<minego/apps/appimage>
 		<minego/apps/kitty>
 		<minego/apps/chromium>
-
-		# <minego/apps/git>
-		# <minego/apps/nh>
-		# <minego/apps/nix-tools>
 	];
 }

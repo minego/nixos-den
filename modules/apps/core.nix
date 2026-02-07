@@ -12,6 +12,8 @@
 				dtach
 				direnv
 
+				nh
+
 				ripgrep
 				ripgrep-all
 
