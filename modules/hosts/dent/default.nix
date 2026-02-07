@@ -1,17 +1,16 @@
-# agrajag - MinisForums V3 Tablet PC
+# dent - Desktop PC
 
 { minego, config, inputs, ... }: let
-	hostname = "agrajag";
+	hostname = "dent";
 in {
 	hostConfig."${hostname}" = {};
 
 	den.aspects."${hostname}" = {
 		includes = [
-			minego.laptop
+			minego.desktop
 
 			minego.gaming._.max
 			minego.hardware._.amdgpu
-			minego.hardware._.fingerprint
 
 			minego.secrets._.mosquitto
 
@@ -26,7 +25,6 @@ in {
 				nixos-hardware.nixosModules.common-cpu-amd
 				nixos-hardware.nixosModules.common-gpu-amd
 				nixos-hardware.nixosModules.common-pc-ssd
-				nixos-hardware.nixosModules.minisforum-v3
 			];
 
 			nixpkgs.config.rocmSupport			= true;
@@ -40,7 +38,18 @@ in {
 			};
 
 			boot = {
-				initrd.availableKernelModules	= [ "nvme" "xhci_pci" "thunderbolt" "usbhid" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" "cryptd" "aesni_intel" ];
+				initrd.availableKernelModules	= [
+					"nvme"
+					"xhci_pci"
+					"thunderbolt"
+					"ahci"
+					"usb_storage"
+					"usbhid"
+					"sd_mod"
+					"rtsx_pci_sdmmc"
+					"cryptd"
+					"aesni_intel"
+				];
 				kernelModules					= [ "kvm-amd" ];
 
 				binfmt = {

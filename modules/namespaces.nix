@@ -41,6 +41,7 @@
 		desktop = den.lib.parametric.atLeast {
 			includes = [
 				<minego/performance/max>
+				<minego/power-mgmt>
 				<minego/workstation>
 				# <minego/networking/wol>
 			];
