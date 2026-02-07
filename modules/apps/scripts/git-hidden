@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# git hidden
+#
+# Usage:
+#	git hidden
+#
+# List files that have been marked as either "skip-worktree" or
+# "assume-unchanged"
+
+if [ $# -ne 0 ]; then
+	echo -n "List files that have been marked as --skip-worktree or "
+	echo -n "--assume-unchanged to effectively make them hidden from git"
+	echo
+	echo "Usage:"
+	echo "    git hidden"
+
+	exit 0
+fi
+
+git ls-files -v | grep '^[Sh]' | sed 's,^[Sh] ,,'
+

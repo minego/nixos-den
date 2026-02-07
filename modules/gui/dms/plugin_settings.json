@@ -1,0 +1,23 @@
+{
+  "calculator": {
+    "enabled": true,
+    "noTrigger": true,
+    "trigger": "="
+  },
+  "emojiLauncher": {
+    "enabled": true,
+    "noTrigger": true,
+    "trigger": ":"
+  },
+  "linuxWallpaperEngine": {
+    "enabled": false
+  },
+  "niriWindows": {
+    "enabled": true,
+    "noTrigger": true,
+    "trigger": "!"
+  },
+  "wallpaperDiscovery": {
+    "enabled": false
+  }
+}

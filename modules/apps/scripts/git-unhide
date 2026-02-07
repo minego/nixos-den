@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# git unhide
+#
+# Usage:
+#	git unhide <file> [<file>...]
+#
+#
+# Remove the 'skip-worktree' and 'assume-unchanged' flags from the specified
+# files so that git no longer treats them as hidden.
+
+if [ $# -lt 1 ]; then
+	echo "Unhide files that have been hidden from git using 'git hide'"
+	echo
+	echo "Usage:"
+	echo "    git unhide <file> [<file>...]"
+
+	exit 0
+fi
+
+
+git update-index --no-skip-worktree --no-assume-unchanged  $@
+git restore --staged $@
+

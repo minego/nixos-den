@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+NAME=$(niri msg -j focused-output | jq -r '.name')
+TRANSFORM=$(niri msg -j focused-output | jq -r '.logical.transform')
+
+case "$TRANSFORM" in
+	Normal)
+		niri msg output "${NAME?}" transform 270
+		;;
+
+	*)
+		niri msg output "${NAME?}" transform normal
+		;;
+
+esac
+
+# Restart the gesture service, so it handles the right edges
+sleep 1
+systemctl --user restart niri-touch-gestures
+

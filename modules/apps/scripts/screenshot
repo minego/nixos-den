@@ -1,0 +1,5 @@
+#!/bin/sh
+
+dms ipc call niri screenshot
+# grimshot copy area
+

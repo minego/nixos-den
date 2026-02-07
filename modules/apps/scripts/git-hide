@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# git hide
+#
+# Usage:
+#	git hide <file> [<file>...]
+#
+# Add the specified files, but mark them as "assume-unchanged" so that git will
+# not attempt to add them to a commit.
+
+if [ $# -lt 1 ]; then
+	echo -n "Mark files as --skip-worktree and --assume-unchanged so that they"
+	echo "will effectively be hidden from git."
+	echo
+	echo "Usage:"
+	echo "    git hide <file> [<file>...]"
+
+	exit 0
+fi
+
+git add --intent-to-add $@
+git update-index --skip-worktree --assume-unchanged $@
+

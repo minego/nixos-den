@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# Treat the first arg as a hexadecimal string, and print it in decimal
+num=$((16#$1))
+printf "%u" $num
+

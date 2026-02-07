@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+case "$1" in
+	0x* | 0X*)
+		# Hexadecimal
+		value="${1:2}"
+		num=$((16#$value))
+		;;
+	0*)
+		# Octal
+		value="${1:1}"
+		num=$((8#$value))
+		;;
+
+	b*)
+		# Binary
+		value="${1:1}"
+		num=$((2#$value))
+		;;
+
+	*)
+		# Decimal
+		value="$1"
+		num=$((10#$value))
+		;;
+esac
+
+toBinary() {
+	n=$(($1))
+	bits=""
+	sign=""
+
+	if [ "$n" -lt 0 ]; then
+		sign=- n=$((-n))
+	fi
+
+	while [ "$n" -gt 0 ]; do
+		bits="$(( n&1 ))$bits";
+		: $(( n >>= 1 ))
+	done
+	printf "%s\n" "$sign${bits:-0}"
+}
+
+printf "%u 0x%x 0%o b%s\n" $num $num $num $(toBinary $num)
+

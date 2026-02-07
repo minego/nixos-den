@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# Treat the first arg as a decimal string, and print it in hexadecimal
+num=$((10#$1))
+printf "%x" $num
+
