@@ -13,6 +13,7 @@
 				direnv
 
 				nh
+				eza
 
 				ripgrep
 				ripgrep-all
@@ -66,15 +67,6 @@
 						chmod +x $out/bin/*
 					'';
 				})
-
-				# comma - Run nix derivations by prefixing command with ,
-				(writeShellScriptBin "," ''
-					package=$1
-					shift
-
-					nix run --impure nixpkgs#$package -- $@
-					'')
-
 			];
 		};
 	};

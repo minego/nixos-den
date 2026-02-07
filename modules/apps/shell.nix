@@ -1,5 +1,12 @@
 {inputs, ... }: {
 	minego.shell = {
+		includes = [
+			inputs.nix-index-database.nixosModules.nix-index
+			{
+				programs.nix-index-database.comma.enable = true;
+			}
+		];
+
 		nixos = { pkgs, lib, ... }: {
 			nixpkgs.overlays = [
 				inputs.nix-your-shell.overlays.default
@@ -35,7 +42,7 @@
 
 						open			= lib.mkIf pkgs.stdenv.isLinux "xdg-open";
 
-						ls				= "eza";
+						ls				= "${pkgs.eza}/bin/eza";
 					};
 					histFile			= "$HOME/.history";
 
