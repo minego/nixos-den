@@ -35,24 +35,24 @@
 			udevmonConfig = ''
                 - JOB: "${intercept} -g $DEVNODE              | ${mackeys} -a | ${swapmods} | ${caps2esc} -m 1 | ${uinput} -d $DEVNODE"
                   DEVICE:
-                	NAME: USB Keyboard
-                	PRODUCT: 12906
-                	VENDOR: 1455
+                    NAME: USB Keyboard
+                    PRODUCT: 12906
+                    VENDOR: 1455
                 - JOB: "${intercept} -g $DEVNODE | ${chrkbd}                | ${mackeys} | ${caps2esc} -m 1 | ${uinput} -d $DEVNODE"
                   DEVICE:
-                	NAME: Google Inc. Hammer
+                    NAME: Google Inc. Hammer
                 - JOB: "${intercept} -g $DEVNODE              | ${mackeys} -a | ${swapmods} | ${caps2esc} -m 1 | ${uinput} -d $DEVNODE"
                   DEVICE:
-                	NAME: AT Translated Set 2 keyboard
+                    NAME: AT Translated Set 2 keyboard
                 - JOB: "${intercept} -g $DEVNODE                            | ${mackeys} | ${caps2esc} -m 1 | ${uinput} -d $DEVNODE"
                   DEVICE:
-                	NAME: Apple MTP keyboard
+                    NAME: Apple MTP keyboard
                 - JOB: "${intercept} -g $DEVNODE                            | ${mackeys} | ${caps2esc} -m 1 | ${uinput} -d $DEVNODE"
                   DEVICE:
-                	NAME: VMware VMware Virtual USB Keyboard
+                    NAME: VMware VMware Virtual USB Keyboard
                 - JOB: "${intercept} -g $DEVNODE                            | ${mackeys} | ${caps2esc} -m 1 | ${uinput} -d $DEVNODE"
                   DEVICE:
-                	NAME: ".*((k|K)(eyboard|EYBOARD)).*"
+                    NAME: ".*((k|K)(eyboard|EYBOARD)).*"
                 '';
 		};
 
