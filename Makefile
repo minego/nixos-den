@@ -6,10 +6,7 @@ FLAKES		:= $(wildcard deps/*/flake.nix)
 FLAKE_DIRS	:= $(dir $(FLAKES))
 
 TOOL		:= nh os
-ARGS		:= --show-trace -H ${HOST} -v ./
-
-# TOOL		:= nixos-rebuild
-# ARGS		:= --show-trace --flake ./\#$(HOST)
+ARGS		:= --show-trace -H ${HOST} ./
 
 # First, so that it is the default target
 .PHONY: all
@@ -100,6 +97,8 @@ repl-host:
 repl-hosts:
 	nix repl ".#nixosConfigurations"
 
+# Setup args for running the command to deploy on a remote machine. Sadly, I
+# can't seem to get nh to do this properly.
 .PHONY: remote-setup
 remote-setup:
 ifeq ($(origin TARGET_HOST), undefined)
@@ -110,7 +109,10 @@ ifeq ($(origin TARGET_HOST), undefined)
 	@echo
 	@false
 endif
-REMOTE_ARGS := --build-host ${TARGET_HOST}
+REMOTE_ARGS := --sudo --target-host ${TARGET_HOST}
+TOOL		:= nixos-rebuild
+ARGS		:= --show-trace --flake ./\#$(HOST)
+
 
 .PHONY: check
 check:
