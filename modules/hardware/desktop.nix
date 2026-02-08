@@ -1,7 +1,7 @@
 { config, ... }: let
 	top = config;
 in {
-	flake.modules.nixos.hardware_laptop = {
+	flake.modules.nixos.hardware_desktop = {
 		imports = with top.flake.modules.nixos; [
 			hardware_powermgmt
 			hardware_bluetooth
@@ -9,7 +9,7 @@ in {
 			hardware_8bitdo
 			hardware_keyboard
 
-			performance_responsive
+			performance_max
 		];
 	};
 }
