@@ -1,14 +1,15 @@
-HOSTNAME	:= $(shell hostname -s)
 UNAME_S		:= $(shell uname -s)
 UNAME_M		:= $(shell uname -m)
-HOST		:= $(shell hostname)
+HOST		:= $(shell hostname -s)
 
 FLAKES		:= $(wildcard deps/*/flake.nix)
 FLAKE_DIRS	:= $(dir $(FLAKES))
 
 TOOL		:= nh os
-# ARGS		:= --hostname $(HOSTNAME) ./
-ARGS		:= --hostname $(HOSTNAME) ./ --show-trace
+ARGS		:= --show-trace -H ${HOST} -v ./
+
+# TOOL		:= nixos-rebuild
+# ARGS		:= --show-trace --flake ./\#$(HOST)
 
 # First, so that it is the default target
 .PHONY: all
@@ -53,39 +54,39 @@ update: git-update dep-branches $(FLAKES)
 ################################################################################
 .PHONY: build
 build:
-	@$(TOOL) build $(ARGS)
+	$(TOOL) build						$(ARGS)
 
 .PHONY: build-remote
 build-remote: remote-setup
-	@$(TOOL) build $(ARGS) $(REMOTE_ARGS)
+	$(TOOL) build		$(REMOTE_ARGS)	$(ARGS)
 
 .PHONY: build-vm
 build-vm:
-	@$(TOOL) build-vm $(ARGS) --hostname $(HOSTNAME)
+	$(TOOL) build-vm					$(ARGS)
 
 .PHONY: build-vm-remote
 build-vm-remote: remote-setup
-	@$(TOOL) build-vm $(ARGS) $(REMOTE_ARGS) --hostname $(HOSTNAME)
+	$(TOOL) build-vm	$(REMOTE_ARGS)	$(ARGS)
 
 .PHONY: switch
 switch:
-	@$(TOOL) switch $(ARGS)
+	$(TOOL) switch						$(ARGS)
 
 .PHONY: switch-remote
 switch-remote: remote-setup
-	@$(TOOL) switch $(ARGS) $(REMOTE_ARGS)
+	$(TOOL) switch		$(REMOTE_ARGS)	$(ARGS)
 
 .PHONY: boot
 boot:
-	@$(TOOL) boot $(ARGS)
+	$(TOOL) boot						$(ARGS)
 
 .PHONY: boot-remote
 boot-remote: remote-setup
-	@$(TOOL) boot $(ARGS) $(REMOTE_ARGS)
+	$(TOOL) boot		$(REMOTE_ARGS)	$(ARGS)
 
 .PHONY: rollback
 rollback:
-	@$(TOOL) switch $(ARGS) --rollback
+	$(TOOL) switch --rollback $(ARGS)
 
 .PHONY: repl
 repl:
@@ -101,15 +102,15 @@ repl-hosts:
 
 .PHONY: remote-setup
 remote-setup:
-ifeq ($(origin REMOTE_HOST), undefined)
-	@echo "The REMOTE_HOST option is required; example:"
+ifeq ($(origin TARGET_HOST), undefined)
+	@echo "The TARGET_HOST option is required; example:"
 	@echo
-	@echo "   make switch REMOTE_HOST=m@dent"
+	@echo "   make switch TARGET_HOST=m@dent"
 	@echo
 	@echo
 	@false
 endif
-REMOTE_ARGS := --build-host ${REMOTE_HOST}
+REMOTE_ARGS := --build-host ${TARGET_HOST}
 
 .PHONY: check
 check:
@@ -137,7 +138,7 @@ why-depends:
 ifndef PKG
 	$(error Run as: 'PKG=moo make why-depends' to check what depends on 'nixpkgs#moo')
 endif
-	nix why-depends .#nixosConfigurations.${HOSTNAME}.config.system.build.toplevel nixpkgs#${PKG}
+	nix why-depends .#nixosConfigurations.${HOST}.config.system.build.toplevel nixpkgs#${PKG}
 
 # One offs, machine specific things, images, etc
 ################################################################################

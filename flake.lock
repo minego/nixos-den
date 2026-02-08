@@ -96,21 +96,6 @@
         "type": "github"
       }
     },
-    "den": {
-      "locked": {
-        "lastModified": 1770400943,
-        "narHash": "sha256-73eh5R6UQOP6B04dxot7Jdxmc/nd3n9fe1XX8vp8l3Q=",
-        "ref": "refs/heads/main",
-        "rev": "b07ef22d338ef765e4e296fb3223ba3cf4e9ae82",
-        "revCount": 185,
-        "type": "git",
-        "url": "https://tangled.org/oeiuwq.com/den"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://tangled.org/oeiuwq.com/den"
-      }
-    },
     "dms": {
       "inputs": {
         "nixpkgs": [
@@ -130,21 +115,6 @@
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
         "type": "github"
-      }
-    },
-    "flake-aspects": {
-      "locked": {
-        "lastModified": 1769723924,
-        "narHash": "sha256-U15OaMr9AcJiB1wW2uCFzFO+DnQ3jJSvln+ZR/+Q0vE=",
-        "ref": "refs/heads/main",
-        "rev": "61524836788ef6991a82e7d34ebb0ccc05d374ed",
-        "revCount": 71,
-        "type": "git",
-        "url": "https://tangled.org/oeiuwq.com/flake-aspects"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://tangled.org/oeiuwq.com/flake-aspects"
       }
     },
     "flake-compat": {
@@ -704,9 +674,7 @@
       "inputs": {
         "agenix": "agenix",
         "chrkbd": "chrkbd",
-        "den": "den",
         "dms": "dms",
-        "flake-aspects": "flake-aspects",
         "flake-parts": "flake-parts",
         "import-tree": "import-tree",
         "jovian-nixos": "jovian-nixos",

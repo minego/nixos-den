@@ -1,14 +1,14 @@
 {
 	description		= "Micah's NixOS config";
-	outputs			= inputs: inputs.flake-parts.lib.mkFlake
-		{ inherit inputs; }
-		(inputs.import-tree ./modules);
+
+	outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 
 	inputs = {
 		nixpkgs = {
 			url = "github:NixOS/nixpkgs/nixos-unstable";
 		};
 
+		# Flakes needed for using the dendritic pattern
 		flake-parts = {
 			url = "github:hercules-ci/flake-parts";
 		};
@@ -17,18 +17,8 @@
 			url = "git+https://tangled.org/oeiuwq.com/import-tree";
 		};
 
-		den = {
-			url = "git+https://tangled.org/oeiuwq.com/den";
-		};
 
-		flake-aspects = {
-			url = "git+https://tangled.org/oeiuwq.com/flake-aspects";
-		};
-
-		nixos-hardware = {
-			url = "github:nixos/nixos-hardware";
-		};
-
+		# My own flakes
 		nixvim = {
 			url = "git+https://codeberg.org/minego/nixvim";
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -54,11 +44,19 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
+
+		# Hardware specific flakes
+		nixos-hardware = {
+			url = "github:nixos/nixos-hardware";
+		};
+
 		jovian-nixos = {
 			url = "github:Jovian-Experiments/Jovian-NixOS";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
+
+		# Software I use
 		agenix = {
 			url = "github:ryantm/agenix";
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -84,6 +82,7 @@
 			url = "github:YaLTeR/niri";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+
 		niri-config = {
 			url = "github:sodiboo/niri-flake";
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -93,6 +92,7 @@
 			url = "github:AvengeMedia/DankMaterialShell";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+
 		quickshell = {
 			url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
 			inputs.nixpkgs.follows = "nixpkgs";
