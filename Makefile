@@ -1,13 +1,15 @@
-HOSTNAME	:= $(shell hostname -s)
 UNAME_S		:= $(shell uname -s)
 UNAME_M		:= $(shell uname -m)
-HOST		:= $(shell hostname)
+HOST		:= $(shell hostname -s)
 
 FLAKES		:= $(wildcard deps/*/flake.nix)
 FLAKE_DIRS	:= $(dir $(FLAKES))
 
 TOOL		:= nh os
-ARGS		:= --show-trace ./
+ARGS		:= --show-trace -H ${HOST} -v ./
+
+# TOOL		:= nixos-rebuild
+# ARGS		:= --show-trace --flake ./\#$(HOST)
 
 # First, so that it is the default target
 .PHONY: all
@@ -56,35 +58,35 @@ build:
 
 .PHONY: build-remote
 build-remote: remote-setup
-	$(TOOL) build		$(REMOTE_ARGS)	--hostname $(HOST) $(ARGS)
+	$(TOOL) build		$(REMOTE_ARGS)	$(ARGS)
 
 .PHONY: build-vm
 build-vm:
-	$(TOOL) build-vm					--hostname $(HOST) $(ARGS)
+	$(TOOL) build-vm					$(ARGS)
 
 .PHONY: build-vm-remote
 build-vm-remote: remote-setup
-	$(TOOL) build-vm	$(REMOTE_ARGS)	--hostname $(HOST) $(ARGS)
+	$(TOOL) build-vm	$(REMOTE_ARGS)	$(ARGS)
 
 .PHONY: switch
 switch:
-	$(TOOL) switch						--hostname $(HOST) $(ARGS)
+	$(TOOL) switch						$(ARGS)
 
 .PHONY: switch-remote
 switch-remote: remote-setup
-	$(TOOL) switch		$(REMOTE_ARGS)	--hostname $(HOST) $(ARGS)
+	$(TOOL) switch		$(REMOTE_ARGS)	$(ARGS)
 
 .PHONY: boot
 boot:
-	$(TOOL) boot						--hostname $(HOST) $(ARGS)
+	$(TOOL) boot						$(ARGS)
 
 .PHONY: boot-remote
 boot-remote: remote-setup
-	$(TOOL) boot		$(REMOTE_ARGS)	--hostname $(HOST) $(ARGS)
+	$(TOOL) boot		$(REMOTE_ARGS)	$(ARGS)
 
 .PHONY: rollback
 rollback:
-	$(TOOL) switch								--rollback $(ARGS)
+	$(TOOL) switch --rollback $(ARGS)
 
 .PHONY: repl
 repl:
@@ -100,15 +102,15 @@ repl-hosts:
 
 .PHONY: remote-setup
 remote-setup:
-ifeq ($(origin REMOTE_HOST), undefined)
-	@echo "The REMOTE_HOST option is required; example:"
+ifeq ($(origin TARGET_HOST), undefined)
+	@echo "The TARGET_HOST option is required; example:"
 	@echo
-	@echo "   make switch REMOTE_HOST=m@dent"
+	@echo "   make switch TARGET_HOST=m@dent"
 	@echo
 	@echo
 	@false
 endif
-REMOTE_ARGS := --build-host ${REMOTE_HOST}
+REMOTE_ARGS := --build-host ${TARGET_HOST}
 
 .PHONY: check
 check:
