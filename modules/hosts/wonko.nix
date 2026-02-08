@@ -35,7 +35,7 @@ in {
 			software
 			software_dev
 			software_desktop
-			software_gaming_steamos
+			software_steamos
 
 			# Users
 			users_root

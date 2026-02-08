@@ -7,7 +7,7 @@ FLAKES		:= $(wildcard deps/*/flake.nix)
 FLAKE_DIRS	:= $(dir $(FLAKES))
 
 TOOL		:= nh os
-ARGS		:= ./ --show-trace
+ARGS		:= --show-trace ./
 
 # First, so that it is the default target
 .PHONY: all
@@ -52,39 +52,39 @@ update: git-update dep-branches $(FLAKES)
 ################################################################################
 .PHONY: build
 build:
-	$(TOOL) build $(ARGS) --hostname $(HOST)
+	$(TOOL) build --hostname $(HOST) $(ARGS)
 
 .PHONY: build-remote
 build-remote: remote-setup
-	$(TOOL) build $(ARGS) $(REMOTE_ARGS) --hostname $(HOST) 
+	$(TOOL) build		$(REMOTE_ARGS)	--hostname $(HOST) $(ARGS)
 
 .PHONY: build-vm
 build-vm:
-	$(TOOL) build-vm $(ARGS) --hostname $(HOST) --hostname $(HOST)
+	$(TOOL) build-vm					--hostname $(HOST) $(ARGS)
 
 .PHONY: build-vm-remote
 build-vm-remote: remote-setup
-	$(TOOL) build-vm $(ARGS) $(REMOTE_ARGS) --hostname $(HOST)
+	$(TOOL) build-vm	$(REMOTE_ARGS)	--hostname $(HOST) $(ARGS)
 
 .PHONY: switch
 switch:
-	$(TOOL) switch $(ARGS) --hostname $(HOST)
+	$(TOOL) switch						--hostname $(HOST) $(ARGS)
 
 .PHONY: switch-remote
 switch-remote: remote-setup
-	$(TOOL) switch $(ARGS) $(REMOTE_ARGS) --hostname $(HOST)
+	$(TOOL) switch		$(REMOTE_ARGS)	--hostname $(HOST) $(ARGS)
 
 .PHONY: boot
 boot:
-	$(TOOL) boot $(ARGS) --hostname $(HOST)
+	$(TOOL) boot						--hostname $(HOST) $(ARGS)
 
 .PHONY: boot-remote
 boot-remote: remote-setup
-	$(TOOL) boot $(ARGS) $(REMOTE_ARGS) --hostname $(HOST)
+	$(TOOL) boot		$(REMOTE_ARGS)	--hostname $(HOST) $(ARGS)
 
 .PHONY: rollback
 rollback:
-	$(TOOL) switch $(ARGS) --rollback
+	$(TOOL) switch								--rollback $(ARGS)
 
 .PHONY: repl
 repl:
