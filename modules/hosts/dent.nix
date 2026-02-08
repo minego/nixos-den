@@ -1,6 +1,6 @@
 # dent - Desktop PC
 
-{ minego, config, inputs, ... }: let
+{ minego, config, ... }: let
 	hostname = "dent";
 in {
 	hostConfig."${hostname}" = {
