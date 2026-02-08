@@ -4,6 +4,8 @@
 	systems = [ "x86_64-linux" "aarch64-linux" ];
 	imports = [
 		inputs.den.flakeModule
-		(inputs.den.namespace "minego" true)
+
+		(inputs.den.namespace "minego" false)
+		(inputs.den.namespace "utils" false)
 	];
 }

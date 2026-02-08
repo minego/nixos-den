@@ -7,7 +7,8 @@ FLAKES		:= $(wildcard deps/*/flake.nix)
 FLAKE_DIRS	:= $(dir $(FLAKES))
 
 TOOL		:= nh os
-ARGS		:= ./
+# ARGS		:= --hostname $(HOSTNAME) ./
+ARGS		:= --hostname $(HOSTNAME) ./ --show-trace
 
 # First, so that it is the default target
 .PHONY: all
