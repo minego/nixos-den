@@ -54,7 +54,7 @@ update: git-update dep-branches $(FLAKES)
 ################################################################################
 .PHONY: build
 build:
-	$(TOOL) build --hostname $(HOST) $(ARGS)
+	$(TOOL) build						$(ARGS)
 
 .PHONY: build-remote
 build-remote: remote-setup
