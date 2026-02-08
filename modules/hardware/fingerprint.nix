@@ -1,13 +1,5 @@
 {
-	minego.hardware._."fingerprint" = {
-		nixos = { ... }: {
-			services.fprintd.enable			= true;
-
-			security.pam.services = {
-				swaylock.fprintAuth = true;
-				gtklock.fprintAuth = true;
-			};
-
-		};
+	flake.modules.nixos.hardware_fingerprint = {
+		# TODO Write me
 	};
 }

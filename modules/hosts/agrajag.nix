@@ -1,9 +1,14 @@
 # agrajag - MinisForums V3 Tablet PC
 
-{ minego, config, inputs, ... }: let
-	hostname = "agrajag";
+{ inputs, config, ... }: let
+	name = "agrajag";
 in {
-	hostConfig.${hostname} = {
+	nixosHosts.${name} = rec {
+		inherit name;
+
+		system			= "x86_64-linux";
+		unstable		= true;
+
 		displays.eDP-1 = {
 			primary		= true;
 			width		= 2500;
@@ -11,69 +16,63 @@ in {
 			vrr			= true;
 			refresh		= 60.0;
 		};
-		primaryDisplay = config.hostConfig.${hostname}.displays.eDP-1;
+		primaryDisplay = displays.eDP-1;
 	};
 
-	den.aspects.${hostname} = {
-		includes = [
-			minego.laptop
+	flake.modules.nixos."hosts/${name}" = {
+#		nixpkgs.hostPlatform = "x86_64-linux";
 
-			minego.gaming._.max
-			minego.hardware._.amdgpu
-			minego.hardware._.amdcpu
-			minego.hardware._.fingerprint
+		imports = with config.flake.modules.nixos; [
+			# Hardware
+			hardware_laptop
+			hardware_bluetooth
+			hardware_cpu_amd
+			hardware_gpu_amd
+			hardware_fingerprint
+			hardware_network_NetworkManager
+			hardware_network_tailscale_client
+			inputs.nixos-hardware.nixosModules.minisforum-v3
 
-			minego.secrets._.mosquitto
+			# Software
+			software_base
+			software_dev
+			software_desktop
+			software_gaming
 
-			minego.networking._.networkManager
-			minego.networking._.tailscale._.client
+			# Users
+			users_root
+			users_m
 		];
 
-		nixos = { ... }: {
-			networking.hostName					= "${hostname}";
-
-			imports = with inputs; [
-				nixos-hardware.nixosModules.minisforum-v3
-			];
-
-			boot = {
-				initrd.availableKernelModules	= [
-					"nvme"
-					"xhci_pci"
-					"thunderbolt"
-					"ahci"
-					"usb_storage"
-					"usbhid"
-					"sd_mod"
-					"rtsx_pci_sdmmc"
-					"cryptd"
-					"aesni_intel"
-				];
-			};
-
-			# Filesystems
-			fileSystems."/boot" = {
-				device			= "/dev/disk/by-uuid/10EB-18AC";
-				fsType			= "vfat";
-				options			= [ "noatime" ];
-			};
-
-			fileSystems."/" = {
-				device			= "/dev/disk/by-uuid/6ef2b006-2215-4291-a446-90b3bf9aaabc";
-				fsType			= "ext4";
-			};
-
-			boot.initrd.luks.devices."luks-cdb4caa5-84d0-4273-a1ce-d077376cfc46" = {
-				device			= "/dev/disk/by-uuid/cdb4caa5-84d0-4273-a1ce-d077376cfc46";
-				allowDiscards	= true;
-			};
+		# Filesystems
+		fileSystems."/boot" = {
+			device			= "/dev/disk/by-uuid/10EB-18AC";
+			fsType			= "vfat";
+			options			= [ "noatime" ];
 		};
-	};
 
-	den.hosts.x86_64-linux.${hostname} = {
-		inherit (config.hostConfig.${hostname}) displays primaryDisplay;
+		fileSystems."/" = {
+			device			= "/dev/disk/by-uuid/6ef2b006-2215-4291-a446-90b3bf9aaabc";
+			fsType			= "ext4";
+		};
 
-		users.m = {};
+		boot.initrd.luks.devices."luks-cdb4caa5-84d0-4273-a1ce-d077376cfc46" = {
+			device			= "/dev/disk/by-uuid/cdb4caa5-84d0-4273-a1ce-d077376cfc46";
+			allowDiscards	= true;
+		};
+
+		boot.initrd.availableKernelModules	= [
+			"nvme"
+			"xhci_pci"
+			"thunderbolt"
+			"ahci"
+			"usb_storage"
+			"usbhid"
+			"sd_mod"
+			"rtsx_pci_sdmmc"
+			"cryptd"
+			"aesni_intel"
+		];
 	};
 }
 
