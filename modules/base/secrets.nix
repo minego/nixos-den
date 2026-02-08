@@ -12,24 +12,24 @@
 			inputs.agenix.packages.aarch64-linux.default
 		];
 
-		# TODO These should be defined in the module that uses them!
-		age.secrets.hostblack-cloudflare-user = {
-			file			= ./../../secrets/hotblack-cloudflare-user.age;
-			owner			= "root";
-			group			= "users";
-			mode			= "400";
-		};
-		age.secrets.hostblack-cloudflare-key = {
-			file			= ./../../secrets/hotblack-cloudflare-key.age;
-			owner			= "root";
-			group			= "users";
-			mode			= "400";
-		};
-		age.secrets.mosquitto = {
-			file			= ./../../secrets/mosquitto.age;
-			owner			= "root";
-			group			= "users";
-			mode			= "440";
-		};
+#		# TODO These should be defined in the module that uses them!
+#		age.secrets.hostblack-cloudflare-user = {
+#			file			= ./../../secrets/hotblack-cloudflare-user.age;
+#			owner			= "root";
+#			group			= "users";
+#			mode			= "400";
+#		};
+#		age.secrets.hostblack-cloudflare-key = {
+#			file			= ./../../secrets/hotblack-cloudflare-key.age;
+#			owner			= "root";
+#			group			= "users";
+#			mode			= "400";
+#		};
+#		age.secrets.mosquitto = {
+#			file			= ./../../secrets/mosquitto.age;
+#			owner			= "root";
+#			group			= "users";
+#			mode			= "440";
+#		};
 	};
 }
