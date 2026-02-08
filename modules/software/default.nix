@@ -41,6 +41,7 @@ in {
 			jq
 			unixtools.xxd
 			htop
+			bottom
 
 			rsync
 			strace

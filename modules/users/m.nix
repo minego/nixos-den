@@ -6,17 +6,13 @@
 			isNormalUser	= true;
 
 			extraGroups = [
-				"adb"
-				"docker"
+				"wheel"
+
 				"wireshark"
 				"video"
 				"input"
 				"dialout"
 				"media"
-
-				"kvm"
-				"libvirtd"
-				"docker"
 			];
 
 			openssh.authorizedKeys.keys = [

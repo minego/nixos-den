@@ -6,6 +6,7 @@
 			registry.nixpkgs.flake			= inputs.nixpkgs;
 			gc.automatic					= true;
 			settings = {
+				warn-dirty					= false;
 				keep-outputs				= true;
 				keep-derivations			= true;
 				use-xdg-base-directories	= true;

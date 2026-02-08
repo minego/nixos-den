@@ -1,5 +1,5 @@
 {
-	flake.modules.nixos.software_virtualization = { config, pkgs, ... }: {
+	flake.modules.nixos.software_virtualization = { config, pkgs, host, ... }: {
 		# NOTE: Run `virt-host-validate` to verify the system is setup properly
 		programs.virt-manager.enable		= true;
 
@@ -39,13 +39,16 @@
 				source = config.virtualisation.libvirtd.qemu.package + "/share/qemu/edk2-i386-vars.fd";
 			};
 		};
+
+		users.users.${host.primaryUser}.extraGroups	= [ "kvm" "libvirtd" ];
 	};
 
-	flake.modules.nixos.software_virtualization_docker = {
+	flake.modules.nixos.software_virtualization_docker = { host, ... }: {
 		virtualisation = {
 			containers.enable				= true;
 			docker.enable					= true;
 		};
+		users.users.${host.primaryUser}.extraGroups	= [ "docker" ];
 	};
 
 	flake.modules.nixos.software_virtualization_waydroid = {

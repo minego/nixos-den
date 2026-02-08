@@ -18,5 +18,7 @@
 
 		# Prevent failig to do a switch because networkmanager takes too long
 		systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+
+		users.users.${host.primaryUser}.extraGroups	= [ "networkmanager" ];
 	};
 }

@@ -1,5 +1,5 @@
 {
-	flake.modules.nixos.hardware_arduino = { pkgs, ... }: {
+	flake.modules.nixos.hardware_arduino = { host, pkgs, ... }: {
 		# Allow access to arduino devices
 		services.udev.extraRules = ''
 		   KERNEL=="ttyACM0", MODE:="666"
@@ -13,5 +13,7 @@
 			# adafruit-nrfutil
 			tio
 		];
+
+		users.users.${host.primaryUser}.extraGroups	= [ "networkmanager" ];
 	};
 }

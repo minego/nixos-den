@@ -7,6 +7,10 @@ FLAKE_DIRS	:= $(dir $(FLAKES))
 
 TOOL		:= nh os
 ARGS		:= --show-trace -H ${HOST} ./
+REMOTE_ARGS := --sudo --target-host ${TARGET_HOST}
+
+# TOOL		:= nixos-rebuild
+# ARGS		:= --show-trace --flake ./\#$(HOST)
 
 # First, so that it is the default target
 .PHONY: all
@@ -109,9 +113,6 @@ ifeq ($(origin TARGET_HOST), undefined)
 	@echo
 	@false
 endif
-REMOTE_ARGS := --sudo --target-host ${TARGET_HOST}
-TOOL		:= nixos-rebuild
-ARGS		:= --show-trace --flake ./\#$(HOST)
 
 
 .PHONY: check
