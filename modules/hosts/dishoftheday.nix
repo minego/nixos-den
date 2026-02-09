@@ -9,11 +9,11 @@ in {
 		system				= "aarch64-linux";
 		unstable			= true;
 
-		displays."Unknown - Unknown - Virtual-1" = {
+		displays."Virtual-1" = {
 			primary		= true;
 			width		= 2560;
 			height		= 1600;
-			refresh		= 59.987;
+			refresh		= 59.972;
 			vrr			= true;
 		};
 
