@@ -49,6 +49,15 @@ let
 				'')}/bin/dms-wrapped";
 		};
 
+		# Restart DMS (if running) because if we don't then we can end up with
+		# a different version in the path vs the one that is running and that
+		# breaks the DMS ipc mechanism.
+		system.userActivationScripts.restartDMS.text = ''
+			if ${pkgs.systemd}/bin/systemctl --user status dms.service >/dev/null; then
+				${pkgs.systemd}/bin/systemctl --user restart dms.service
+			fi
+			'';
+
 		# This conflicts with the DMS polkit agent
 		systemd.user.services.niri-flake-polkit.enable = false;
 	};
