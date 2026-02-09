@@ -55,7 +55,11 @@
 		virtualisation.waydroid.enable		= true;
 	};
 
-	flake.modules.nixos.hardware_vm = {
+	flake.modules.nixos.hardware_vm = { pkgs, ... }: {
 		services.qemuGuest.enable			= true;
+
+		environment.systemPackages = with pkgs; [
+			open-vm-tools
+		];
 	};
 }

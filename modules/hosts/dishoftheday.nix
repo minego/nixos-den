@@ -33,7 +33,6 @@ in {
 			software
 			software_dev
 			software_desktop
-			software_gaming
 			software_virtualization_docker
 
 			# Users
@@ -59,10 +58,6 @@ in {
 						allowDiscards	= true;
 					};
 				};
-
-				environment.systemPackages = with pkgs; [
-					open-vm-tools
-				];
 
 				boot.initrd.availableKernelModules	= [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "sr_mod" ];
 			}
