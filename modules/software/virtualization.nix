@@ -55,7 +55,7 @@
 		virtualisation.waydroid.enable		= true;
 	};
 
-	flake.modules.nixos.vm = {
+	flake.modules.nixos.hardware_vm = {
 		services.qemuGuest.enable			= true;
 	};
 }
