@@ -22,7 +22,7 @@
 
 			mitmproxy
 		];
-	};
 
-	security.pki.certificateFiles = [ ./../../assets/mitmproxy-ca-cert.pem ];
+		security.pki.certificateFiles = [ ./../../assets/mitmproxy-ca-cert.pem ];
+	};
 }
