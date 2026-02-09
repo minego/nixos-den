@@ -25,6 +25,9 @@ in {
 			software_virtualization
 			software_virtualization_docker
 
+			# minego.net services
+			sites_minego_net
+
 			# Users
 			users_root
 			users_m
