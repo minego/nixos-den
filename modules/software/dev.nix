@@ -1,5 +1,9 @@
 {
-	flake.modules.nixos.software_dev = { pkgs, ... }: {
+	flake.modules.nixos.software_dev = { pkgs, inputs, ... }: {
+		imports = with inputs.self.modules.nixos; [
+			software
+		];
+
 		environment.systemPackages = with pkgs; [
 			neovim
 			dtach

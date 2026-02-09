@@ -34,7 +34,6 @@ in {
 			inputs.nixos-hardware.nixosModules.minisforum-v3
 
 			# Software
-			software
 			software_dev
 			software_desktop
 			software_gaming

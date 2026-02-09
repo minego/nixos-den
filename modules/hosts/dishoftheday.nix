@@ -30,7 +30,6 @@ in {
 			hardware_vm
 
 			# Software
-			software
 			software_dev
 			software_desktop
 			software_virtualization_docker
