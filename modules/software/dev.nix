@@ -19,6 +19,10 @@
 
 			openssl
 			openssl.dev
+
+			mitmproxy
 		];
 	};
+
+	security.pki.certificateFiles = [ ./../../assets/mitmproxy-ca-cert.pem ];
 }

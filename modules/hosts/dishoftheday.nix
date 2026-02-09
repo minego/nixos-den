@@ -60,6 +60,9 @@ in {
 				};
 
 				boot.initrd.availableKernelModules	= [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "sr_mod" ];
+
+				# Add my work's root cert
+				security.pki.certificateFiles = [ ./../../assets/work-ca.pem ];
 			}
 		];
 	};
