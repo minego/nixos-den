@@ -1,6 +1,5 @@
-{ config, ... }: let
-	top = config;
-in {
+# Base software that should always be included.
+{
 	flake.modules.nixos.software = { pkgs, ... }: {
 		environment.shellAliases = {
 			calc			= "eva";
