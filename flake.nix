@@ -17,6 +17,11 @@
 			url = "git+https://tangled.org/oeiuwq.com/import-tree";
 		};
 
+		# nix-made (Home Manager alternative)
+		nix-maid = {
+			url = "github:viperML/nix-maid";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 
 		# My own flakes
 		nixvim = {
