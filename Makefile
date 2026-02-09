@@ -7,10 +7,6 @@ FLAKE_DIRS	:= $(dir $(FLAKES))
 
 TOOL		:= nh os
 ARGS		:= --show-trace -H ${HOST} ./
-REMOTE_ARGS := --target-host ${TARGET_HOST}
-
-# TOOL		:= nixos-rebuild
-# ARGS		:= --show-trace --flake ./\#$(HOST)
 
 # First, so that it is the default target
 .PHONY: all
@@ -55,35 +51,31 @@ update: git-update dep-branches $(FLAKES)
 ################################################################################
 .PHONY: build
 build:
-	$(TOOL) build						$(ARGS)
+	$(TOOL) build $(ARGS)
 
-.PHONY: build-remote
-build-remote: remote-setup
-	$(TOOL) build		$(REMOTE_ARGS)	$(ARGS)
+
+# I can not get nh remote to honor the --build-host or --target-host options...
+.PHONY: build-for
+build-for:
+ifeq ($(origin TARGET_HOST), undefined)
+	@echo "The TARGET_HOST option is required; example:"
+	@echo
+	@echo "   make build-for TARGET_HOST=m@wonko HOST=wonko"
+	@false
+endif
+	nixos-rebuild build --sudo --target-host $(TARGET_HOST) --flake ./\#$(HOST)
 
 .PHONY: build-vm
 build-vm:
-	$(TOOL) build-vm					$(ARGS)
-
-.PHONY: build-vm-remote
-build-vm-remote: remote-setup
-	$(TOOL) build-vm	$(REMOTE_ARGS)	$(ARGS)
+	$(TOOL) build-vm $(ARGS)
 
 .PHONY: switch
 switch:
-	$(TOOL) switch						$(ARGS)
-
-.PHONY: switch-remote
-switch-remote: remote-setup
-	$(TOOL) switch		$(REMOTE_ARGS)	$(ARGS)
+	$(TOOL) switch $(ARGS)
 
 .PHONY: boot
 boot:
-	$(TOOL) boot						$(ARGS)
-
-.PHONY: boot-remote
-boot-remote: remote-setup
-	$(TOOL) boot		$(REMOTE_ARGS)	$(ARGS)
+	$(TOOL) boot $(ARGS)
 
 .PHONY: rollback
 rollback:
@@ -100,19 +92,6 @@ repl-host:
 .PHONY: repl-hosts
 repl-hosts:
 	nix repl ".#nixosConfigurations"
-
-# Setup args for running the command to deploy on a remote machine. Sadly, I
-# can't seem to get nh to do this properly.
-.PHONY: remote-setup
-remote-setup:
-ifeq ($(origin TARGET_HOST), undefined)
-	@echo "The TARGET_HOST option is required; example:"
-	@echo
-	@echo "   make switch TARGET_HOST=m@dent"
-	@echo
-	@echo
-	@false
-endif
 
 
 .PHONY: check
