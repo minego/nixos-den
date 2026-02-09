@@ -9,7 +9,7 @@ in {
 		system				= "aarch64-linux";
 		unstable			= true;
 
-		displays.DP-3 = {
+		displays."Unknown - Unknown - Virtual-1" = {
 			primary		= true;
 			width		= 2560;
 			height		= 1600;
@@ -17,7 +17,7 @@ in {
 			vrr			= true;
 		};
 
-		primaryDisplay		= displays.DP-3;
+		primaryDisplay		= displays."Unknown - Unknown - Virtual-1";
 
 		ignorePowerButton	= false;
 
@@ -26,7 +26,7 @@ in {
 
 			# Hardware
 			hardware_desktop
-			hardware_network_NetworkManager
+			hardware_network_dhcp
 			hardware_vm
 
 			# Software
