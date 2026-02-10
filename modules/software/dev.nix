@@ -20,6 +20,8 @@
 			pkg-config
 
 			jq
+			yq
+			plantuml
 
 			openssl
 			openssl.dev
