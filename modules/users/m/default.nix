@@ -1,8 +1,19 @@
 {
 	flake.modules.nixos.users_m = { pkgs, ... }: {
+		# Use bash to start nushell, since nushell doesn't make a good login shell
+		programs.bash.interactiveShellInit = ''
+			if ! [ "$TERM" = "dumb" ] && [ -z "$BASH_EXECUTION_STRING" ]; then
+				exec nu --config ${./config.nu}
+			fi
+		'';
+
 		users.users.m = {
 			description		= "Micah N Gorrell";
-			shell			= pkgs.zsh;
+
+			# Use bash with the interactive shell hook above setting it to nu
+			shell			= pkgs.bash;
+			# shell			= pkgs.zsh;
+
 			isNormalUser	= true;
 
 			extraGroups = [

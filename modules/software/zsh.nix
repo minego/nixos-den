@@ -1,13 +1,6 @@
 let
 	module = { inputs, pkgs, lib, ... }: {
-		imports = [
-			inputs.nix-index-database.nixosModules.nix-index
-		];
-		programs.nix-index-database.comma.enable = true;
-
 		nixpkgs.overlays = [
-			inputs.nix-your-shell.overlays.default
-
 			(self: super: {
 				zsh-vi-mode = super.zsh-vi-mode.overrideDerivation (oldAttrs: {
 					src = inputs.zsh-vi-mode;
@@ -16,8 +9,6 @@ let
 		];
 
 		environment.systemPackages = with pkgs; [
-			nix-your-shell
-
 			zsh
 			zsh-syntax-highlighting
 			zsh-vi-mode
@@ -113,85 +104,16 @@ let
 					
 					# nix-index
 					source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
+
+					# Carapace
+					autoload -U compinit && compinit
+					export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+					zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+					source <(carapace _carapace)
+
 					'';
 			};
 
-			starship = {
-				enable						= true;
-				settings = {
-					format					= "$nix_shell$username$hostname$directory$git_branch$git_state$git_status$cmd_duration$line_break$character";
-					right_format			= "$status";
-
-					directory = {
-						truncation_length	= 9;
-						style				= "blue";
-						repo_root_style		= "yellow";
-						truncate_to_repo	= false;
-						read_only			= " ";
-					};
-
-					username = {
-						format				= "[$user]($style)@";
-						show_always			= false;
-					};
-
-					hostname = {
-						format				= "[$hostname]($style) ";
-						ssh_only			= true;
-						trim_at				= ".";
-					};
-
-					character = {
-						success_symbol		= "[❯](purple)";
-						error_symbol		= "[❯](red)";
-						vicmd_symbol		= "[❮](green)";
-					};
-
-					nix_shell = {
-						disabled			= false;
-						format				= "[(\($name\))](bold yellow) ";
-					};
-
-					git_branch = {
-						format				= "[$symbol$branch]($style) ";
-						style				= "bold white";
-						symbol				= " ";
-					};
-
-					git_status = {
-						format				= "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)";
-						style				= "cyan";
-						ignore_submodules	= false;
-
-						conflicted			= "=";
-						ahead				= "⇡";
-						behind				= "⇣";
-						diverged			= "⇕";
-						up_to_date			= "" ;
-						untracked			= "?";
-						stashed				= "*";
-						modified			= "!";
-						staged				= "+";
-						renamed				= "»";
-						deleted				= "✘";
-					};
-
-					git_state = {
-						format				= "\([$state( $progress_current/$progress_total)]($style)\) ";
-						style				= "white";
-					};
-
-					cmd_duration = {
-						format				= "[$duration]($style) ";
-						style				= "yellow";
-					};
-
-					status = {
-						format				= " [$status]($style) ";
-						disabled			= false;
-					};
-				};
-			};
 			direnv = {
 				enable						= true;
 				nix-direnv.enable			= true;
