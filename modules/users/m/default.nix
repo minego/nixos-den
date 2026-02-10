@@ -1,13 +1,28 @@
 {
-	flake.modules.nixos.users_m = { pkgs, ... }: {
+	flake.modules.nixos.users_m = { pkgs, ... }: let
+		username = "m";
+	in {
+		# nushell with my config
+		environment.etc."nu/${username}.nu".text = ''
+			$env.STARSHIP_BIN = "${pkgs.starship}/bin/starship"
+
+			source ${./config.nu}
+		'';
+
 		# Use bash to start nushell, since nushell doesn't make a good login shell
 		programs.bash.interactiveShellInit = ''
-			if ! [ "$TERM" = "dumb" ] && [ -z "$BASH_EXECUTION_STRING" ]; then
-				exec nu --config ${./config.nu}
+			if [ "$USER" = "${username}" ]; then
+				if ! [ "$TERM" = "dumb" ] && [ -z "$BASH_EXECUTION_STRING" ]; then
+					exec nu --config /etc/nu/m.nu
+				fi
 			fi
 		'';
 
-		users.users.m = {
+		# This option changes where the starship configuration environment
+		# variable gets set, and this is needed to let it get through to nu
+		programs.starship.interactiveOnly = false;
+
+		users.users.${username} = {
 			description		= "Micah N Gorrell";
 
 			# Use bash with the interactive shell hook above setting it to nu
