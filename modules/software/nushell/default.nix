@@ -5,10 +5,6 @@ let
 		];
 		programs.nix-index-database.comma.enable = true;
 
-		nixpkgs.overlays = [
-			inputs.nix-your-shell.overlays.default
-		];
-
 		environment.systemPackages = with pkgs; [
 			nix-your-shell
 			starship
@@ -18,6 +14,14 @@ let
 			nushell-plugin-polars
 
 			carapace				# Command argument completion for common tools
+		];
+
+		nixpkgs.overlays = [
+			inputs.nix-your-shell.overlays.default
+
+			(_: super: {
+
+			})
 		];
 	};
 in {
