@@ -10,8 +10,8 @@ let
 			starship
 
 			nushell
-			nushell-plugin-gstat	# git status
-			nushell-plugin-polars
+			nushell-plugin-gstat	# gstat command for info about a git repo
+			nushell-plugin-formats
 
 			carapace				# Command argument completion for common tools
 		];

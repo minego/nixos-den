@@ -8,11 +8,11 @@
 
 			source ${./config.nu}
 
-			plugin add ${pkgs.nushell-plugin-gstat}/bin/nu_plugin_gstat
-			plugin use gstat
+			# plugin add ${pkgs.nushell-plugin-gstat}/bin/nu_plugin_gstat
+			# plugin use gstat
 
-			plugin add ${pkgs.nushell-plugin-formats}/bin/nu_plugin_formats
-			plugin use formats
+			# plugin add ${pkgs.nushell-plugin-formats}/bin/nu_plugin_formats
+			# plugin use formats
 		'';
 
 		# Use bash to start nushell, since nushell doesn't make a good login shell
