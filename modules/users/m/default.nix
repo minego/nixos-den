@@ -30,7 +30,12 @@
 		programs.bash.interactiveShellInit = ''
 			if [ "$USER" = "${username}" ]; then
 				if ! [ "$TERM" = "dumb" ] && [ -z "$BASH_EXECUTION_STRING" ]; then
-					export XDG_DATA_HOME= 
+					# This is hacky as hell, but oh well. The starship module
+					# inserts a line into /etc/profile to set the path to the
+					# config file, but that doesn't make it through here.
+					$(cat /etc/profile | grep "export STARSHIP_")
+					# echo "Starship config: $STARSHIP_CONFIG"
+
 					exec nu --config /etc/nu/m.nu
 				fi
 			fi

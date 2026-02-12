@@ -25,13 +25,19 @@ alias :qall = exit
 alias :e = vi
 
 # Starship
+
 $env.STARSHIP_SHELL = "nu"
 load-env {
     STARSHIP_SESSION_KEY: (random chars -l 16)
-    PROMPT_MULTILINE_INDICATOR: (
-        ^$env.STARSHIP_BIN prompt --continuation
-    )
     PROMPT_INDICATOR: ""
+
+	PROMPT_INDICATOR_VI_INSERT: ": "
+	PROMPT_INDICATOR_VI_NORMAL: "❯ "
+
+    # PROMPT_MULTILINE_INDICATOR: (
+    #     ^$env.STARSHIP_BIN prompt --continuation
+    # )
+	PROMPT_MULTILINE_INDICATOR: "::: "
 
     PROMPT_COMMAND: {||
         (

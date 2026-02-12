@@ -7,8 +7,9 @@ let
 		programs = {
 			starship = {
 				enable						= true;
+
 				settings = {
-					format					= "$nix_shell$username$hostname$directory$git_branch$git_state$git_status$cmd_duration$line_break$character";
+					format					= " $nix_shell$username$hostname$directory$git_branch$git_state$git_status$cmd_duration$line_break$character";
 					right_format			= "$status";
 
 					directory = {
@@ -30,10 +31,19 @@ let
 						trim_at				= ".";
 					};
 
+					# Do not include $character on the end, because nushell will
+					# render the indicator itself after the prompt.
+
+					# character = {
+					# 	success_symbol		= "[❯](purple)";
+					# 	error_symbol		= "[❯](red)";
+					# 	vicmd_symbol		= "[❮](green)";
+					# };
+
 					character = {
-						success_symbol		= "[❯](purple)";
-						error_symbol		= "[❯](red)";
-						vicmd_symbol		= "[❮](green)";
+						success_symbol		= "";
+						error_symbol		= "";
+						vicmd_symbol		= "";
 					};
 
 					nix_shell = {
