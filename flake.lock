@@ -104,11 +104,11 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1770853352,
-        "narHash": "sha256-S6UObkO6XMPPEpAjLMvalFpWJwTyZJASaBFiwGGZuiM=",
+        "lastModified": 1770915512,
+        "narHash": "sha256-RZP4WVEz/tFnPA16fbfFoLViG/TPaLJKIHXElObZbEA=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "bd46d29ff0513742e177e13ea3907c40128c317d",
+        "rev": "ba5bf0cabc51aa95e889bf29e891fd8bb3e9222c",
         "type": "github"
       },
       "original": {
@@ -251,11 +251,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1770656651,
-        "narHash": "sha256-p0bV6EkZZRHyPm3ZJfo0txhuhy9gSfEAzzFc3zG1iLA=",
+        "lastModified": 1770915266,
+        "narHash": "sha256-2oD6ud7iathz3rb0TcZyMqAsG+u2KRpkcAY3CCBt5rs=",
         "owner": "Jovian-Experiments",
         "repo": "Jovian-NixOS",
-        "rev": "2a3cd5fe86931bb928d56c11857d2f825014b852",
+        "rev": "deee66bd287521aa4008f0bb616060f37c058980",
         "type": "github"
       },
       "original": {
@@ -542,11 +542,11 @@
         "vivify": "vivify"
       },
       "locked": {
-        "lastModified": 1770866108,
-        "narHash": "sha256-McraNjcFiF5J61ibentshZx8RlRdzvgIzBpYZ27IwOk=",
+        "lastModified": 1770919186,
+        "narHash": "sha256-UQAne/afwLbBZm7mSLpcHczra6gNYldpv4HXNUlgK1s=",
         "ref": "refs/heads/main",
-        "rev": "07e2fa75b65e5331903f8494ae62fc45eb4e6dc9",
-        "revCount": 336,
+        "rev": "b5bcf255977834f2b5feab332cc7ab6ffb9e226a",
+        "revCount": 337,
         "type": "git",
         "url": "https://codeberg.org/minego/nixvim"
       },
