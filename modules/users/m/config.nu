@@ -15,7 +15,7 @@ $env.config.display_errors.exit_code	= false		# Let starship display it
 $env.config.footer_mode					= "auto"
 
 $env.config.completions.case_sensitive	= false
-$env.config.completions.quick			= false
+$env.config.completions.quick			= true		# This doesn't make sense but setting it to false causes weird buggy behavior
 $env.config.completions.partial			= true
 $env.config.completions.algorithm		= "prefix"
 
