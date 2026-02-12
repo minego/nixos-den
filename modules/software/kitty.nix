@@ -89,6 +89,10 @@ let
 				font_features						MonaspaceNeon-Bold         +dlig +calt +liga +ss01 +ss02 +ss03 +ss04 +ss05 +ss06 +ss07
 				font_features						MonaspaceNeon-Italic       +dlig +calt +liga +ss01 +ss02 +ss03 +ss04 +ss05 +ss06 +ss07
 				font_features						MonaspaceNeon-Bold-Italic  +dlig +calt +liga +ss01 +ss02 +ss03 +ss04 +ss05 +ss06 +ss07
+
+				# Use neovim, but with the same options we'd use for a man pager
+				# because that makes it handle the colors properly
+                scrollback_pager ${pkgs.neovim}/bin/nvim +"set nomodified" +Man! -
 				'';
 			"xdg/kitty/kitty.app.png".source	= ./../../assets/kitty.app.png;
 		};

@@ -1,24 +1,40 @@
 let 
-	module = { inputs, pkgs, ... }: {
+	module = { inputs, pkgs, ... }: let
+		nvim		= pkgs.neovim;
+		nvimcmd		= "${nvim}/bin/nvim";
+
+		manpager	= (pkgs.writeShellScriptBin "manpager" ''
+			${nvimcmd} +"set nomodified" +Man! -
+		'');
+
+		gitpager	= (pkgs.writeShellScriptBin "gitpager" ''
+			${nvimcmd} +"set nomodified" +Man! +'set syntax=diff' -
+		'');
+	in {
 		nixpkgs.overlays = [
 			inputs.nixvim.overlays.default
 		];
 
 		environment.shellAliases = {
-			vi				= "nvim";
-			vim				= "nvim";
+			vi				= nvimcmd;
+			vim				= nvimcmd;
 		};
 
 		environment.variables = {
 			KEYTIMEOUT		= "1";
-			VISUAL			= "nvim";
-			EDITOR			= "nvim";
-			SUDO_EDITOR		= "nvim";
+			VISUAL			= nvimcmd;
+			EDITOR			= nvimcmd;
+			SUDO_EDITOR		= nvimcmd;
 			LC_CTYPE		= "C";
+			PAGER			= "manpager";
+			MANPAGER		= "manpager";
+			GIT_PAGER		= "gitpager";
 		};
 
 		environment.systemPackages = [
-			pkgs.neovim
+			nvim
+			manpager
+			gitpager
 		];
 	};
 in {
