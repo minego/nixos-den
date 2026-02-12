@@ -79,7 +79,7 @@ boot:
 
 .PHONY: rollback
 rollback:
-	$(TOOL) switch --rollback $(ARGS)
+	$(TOOL) rollback
 
 .PHONY: repl
 repl:
