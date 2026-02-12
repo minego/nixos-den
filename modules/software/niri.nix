@@ -320,10 +320,6 @@ let
 
 		# Open the firewall port for rquickshare
 		networking.firewall.allowedTCPPorts				= [ 12345 ];
-
-		# Enable gnome keyring
-		services.gnome.gnome-keyring.enable				= true;
-		security.pam.services.niri.enableGnomeKeyring	= true;
 	};
 in {
 	flake.modules.nixos.software_desktop	= module;
