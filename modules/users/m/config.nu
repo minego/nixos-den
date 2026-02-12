@@ -1,3 +1,5 @@
+use std/dirs
+
 $env.config.show_banner					= false
 $env.config.edit_mode					= 'vi'
 $env.config.buffer_editor				= "nvim"
@@ -12,10 +14,15 @@ $env.config.use_kitty_protocol			= true
 $env.config.display_errors.exit_code	= false		# Let starship display it
 $env.config.footer_mode					= "auto"
 
-# $env.config.table.mode					= "light"
+$env.config.completions.case_sensitive	= false
+$env.config.completions.quick			= false
+$env.config.completions.partial			= true
+$env.config.completions.algorithm		= "prefix"
 
-use std/dirs
-
+alias fucking = sudo
+alias :q = exit
+alias :qall = exit
+alias :e = vi
 
 # Starship
 $env.STARSHIP_SHELL = "nu"
