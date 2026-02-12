@@ -33,7 +33,6 @@ let
 			extraPortals = [
 				pkgs.xdg-desktop-portal-gtk
 				pkgs.xdg-desktop-portal-gnome
-				pkgs.gnome-keyring
 			];
 		};
 
@@ -73,9 +72,6 @@ let
 			qs-osk
 			qs-osk-desktop
 
-			# Provides org.gnome.keyring.SystemPrompter
-			gcr
-
 			(pkgs.makeDesktopItem {
 				name		= "rotate";
 				desktopName = "rotate";
@@ -87,10 +83,6 @@ let
 			slack
 			deezer-enhanced
 		];
-
-		# Enable gnome keyring
-		services.gnome.gnome-keyring.enable				= true;
-		security.pam.services.niri.enableGnomeKeyring	= true;
 	};
 in {
 	flake.modules.nixos.software_wayland	= module;

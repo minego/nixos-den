@@ -9,8 +9,6 @@ let
 			compositor.name	= "niri";
 			configHome		= "/home/m"; # Use DMS config from user m
 		};
-
-		security.pam.services.greetd.enableGnomeKeyring	= true;
 	};
 in {
 	# The DMS greeter is included in the main desktop aspect
