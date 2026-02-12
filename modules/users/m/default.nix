@@ -8,6 +8,17 @@
 
 			source ${./config.nu}
 
+			# Load the last-result-display-hook module
+			use std-rfc/kv *
+			use ${./../../software/nushell/modules}/last-result-display-hook/ *
+
+			$env.config.hooks.display_output = {
+			  do (last-result-display-hook)
+			  # | do (metadata-display-hook)
+			  | do (default-display-hook)
+			}
+
+
 			# plugin add ${pkgs.nushell-plugin-gstat}/bin/nu_plugin_gstat
 			# plugin use gstat
 
@@ -19,6 +30,7 @@
 		programs.bash.interactiveShellInit = ''
 			if [ "$USER" = "${username}" ]; then
 				if ! [ "$TERM" = "dumb" ] && [ -z "$BASH_EXECUTION_STRING" ]; then
+					export XDG_DATA_HOME= 
 					exec nu --config /etc/nu/m.nu
 				fi
 			fi
