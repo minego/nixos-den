@@ -4,11 +4,22 @@ let
 		nvimcmd		= "${nvim}/bin/nvim";
 
 		pager	= (pkgs.writeShellScriptBin "pager" ''
-			${nvimcmd} +"set nomodified" +Man! +"set nonumber norelativenumber" -
-		'');
+			exec ${nvimcmd}								\
+				+'set eventignore=FileType'				\
+				+'nnoremap q ZQ'						\
+				+'set nonumber norelativenumber'		\
+				+'set nowrap signcolumn=auto'			\
+				+'set nomodified nolist'				\
+				+'TermHl'								\
+				+'set nonumber norelativenumber'		\
+				+'set nowrap signcolumn=auto'			\
+				+'set nomodified nolist'				\
+				+'$' -
 
-		gitpager	= (pkgs.writeShellScriptBin "gitpager" ''
-			${nvimcmd} +"set nomodified" +Man! +"set nonumber norelativenumber" +"set syntax=diff" -
+
+				# When neovim 0.12 is available, this should work instead of the
+				# 'TermHl' user command
+				# +'call nvim_open_term(0, {})'
 		'');
 	in {
 		nixpkgs.overlays = [
@@ -28,13 +39,12 @@ let
 			LC_CTYPE		= "C";
 			PAGER			= "pager";
 			pager			= "pager";
-			GIT_PAGER		= "gitpager";
+			GIT_PAGER		= "pager";
 		};
 
 		environment.systemPackages = [
 			nvim
 			pager
-			gitpager
 		];
 	};
 in {

@@ -542,11 +542,11 @@
         "vivify": "vivify"
       },
       "locked": {
-        "lastModified": 1770919186,
-        "narHash": "sha256-UQAne/afwLbBZm7mSLpcHczra6gNYldpv4HXNUlgK1s=",
+        "lastModified": 1771001802,
+        "narHash": "sha256-0D4tChQSEjDcIbo2zAXqYpI9jZXPBiVm8rXNjsQ7Dg4=",
         "ref": "refs/heads/main",
-        "rev": "b5bcf255977834f2b5feab332cc7ab6ffb9e226a",
-        "revCount": 337,
+        "rev": "7622211e4e36ae17a090f2041cc390f02354a239",
+        "revCount": 339,
         "type": "git",
         "url": "https://codeberg.org/minego/nixvim"
       },
