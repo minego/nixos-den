@@ -3,12 +3,12 @@ let
 		nvim		= pkgs.neovim;
 		nvimcmd		= "${nvim}/bin/nvim";
 
-		manpager	= (pkgs.writeShellScriptBin "manpager" ''
-			${nvimcmd} +"set nomodified" +Man! -
+		pager	= (pkgs.writeShellScriptBin "pager" ''
+			${nvimcmd} +"set nomodified" +Man! +"set nonumber norelativenumber" -
 		'');
 
 		gitpager	= (pkgs.writeShellScriptBin "gitpager" ''
-			${nvimcmd} +"set nomodified" +Man! +'set syntax=diff' -
+			${nvimcmd} +"set nomodified" +Man! +"set nonumber norelativenumber" +"set syntax=diff" -
 		'');
 	in {
 		nixpkgs.overlays = [
@@ -26,14 +26,14 @@ let
 			EDITOR			= nvimcmd;
 			SUDO_EDITOR		= nvimcmd;
 			LC_CTYPE		= "C";
-			PAGER			= "manpager";
-			MANPAGER		= "manpager";
+			PAGER			= "pager";
+			pager			= "pager";
 			GIT_PAGER		= "gitpager";
 		};
 
 		environment.systemPackages = [
 			nvim
-			manpager
+			pager
 			gitpager
 		];
 	};

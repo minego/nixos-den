@@ -92,7 +92,7 @@ let
 
 				# Use neovim, but with the same options we'd use for a man pager
 				# because that makes it handle the colors properly
-                scrollback_pager ${pkgs.neovim}/bin/nvim +"set nomodified" +Man! -
+                scrollback_pager ${pkgs.neovim}/bin/nvim +"set nomodified" +Man! +"set nonumber norelativenumber"  -
 				'';
 			"xdg/kitty/kitty.app.png".source	= ./../../assets/kitty.app.png;
 		};
