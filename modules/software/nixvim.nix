@@ -52,8 +52,8 @@ let
 			SUDO_EDITOR		= nvimcmd;
 			LC_CTYPE		= "C";
 			PAGER			= "pager";
-			pager			= "pager";
 			GIT_PAGER		= "pager";
+			MANPAGER		= "${nvimcmd} +Man!";
 		};
 
 		environment.systemPackages = [
