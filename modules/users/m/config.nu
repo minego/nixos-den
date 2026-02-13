@@ -91,8 +91,10 @@ def --env unset-env [name] { hide-env $name }
 
 let carapace_completer = {|spans|
 	load-env {
-		CARAPACE_SHELL_BUILTINS: (help commands | where category != "" | get name | each { split row " " | first } | uniq  | str join "\n")
-		CARAPACE_SHELL_FUNCTIONS: (help commands | where category == "" | get name | each { split row " " | first } | uniq  | str join "\n")
+		CARAPACE_BRIDGES:			"bash"
+		CARAPACE_LENIENT:			"1"
+		CARAPACE_SHELL_BUILTINS:	(help commands | where category != "" | get name | each { split row " " | first } | uniq  | str join "\n")
+		CARAPACE_SHELL_FUNCTIONS:	(help commands | where category == "" | get name | each { split row " " | first } | uniq  | str join "\n")
 	}
 
 	# if the current command is an alias, get it's expansion
