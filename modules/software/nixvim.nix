@@ -18,7 +18,7 @@ let
 
 				exec cat "$TMPFILE"
 			else
-				exec ${nvimcmd}								\
+				cat "$TMPFILE" | ${nvimcmd}					\
 					+'set eventignore=FileType'				\
 					+'nnoremap q ZQ'						\
 					+'set nonumber norelativenumber'		\
