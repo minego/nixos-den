@@ -90,8 +90,8 @@ let
 				font_features						MonaspaceNeon-Italic       +dlig +calt +liga +ss01 +ss02 +ss03 +ss04 +ss05 +ss06 +ss07
 				font_features						MonaspaceNeon-Bold-Italic  +dlig +calt +liga +ss01 +ss02 +ss03 +ss04 +ss05 +ss06 +ss07
 
-				# Use 'pager', which is my script that uses neovim
-                scrollback_pager pager
+				# Use 'viewer', which is my script that uses neovim
+                scrollback_pager viewer
 				'';
 			"xdg/kitty/kitty.app.png".source	= ./../../assets/kitty.app.png;
 		};
