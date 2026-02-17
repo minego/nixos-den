@@ -141,3 +141,45 @@ $env.config.hooks.env_change.PWD ++= [{||
 }]
 
 
+# Tab normally completes as much as can be completed, then opens the completion
+# menu, which selects the first item.
+#
+# I don't want the menu though, so this is a hacky solution. Open the menu, but
+# then hit space and backspace, which causes the menu to close.
+#
+# The result is that it completes as much as it can, but does NOT open the menu.
+# So, C-n will be used for opening the menu instead.
+$env.config.keybindings ++= [{
+	name:		completion_no_menu
+	modifier:	none
+	keycode:	tab
+	mode:		[ vi_insert, vi_normal, emacs ]
+	event: [
+		{ send: menu name: completion_menu }
+		{ edit: insertstring value: " " }
+		{ edit: backspace }
+	]
+} {
+    name:		completion_menu_ctrl_n
+    modifier:	control
+    keycode:	char_n
+	mode:		[ vi_insert, vi_normal, emacs ]
+    event: {
+        until: [
+          { send: menu name: completion_menu }
+          { send: menunext }
+        ]
+    }
+} {
+    name:		completion_menu_ctrl_t
+    modifier:	control
+    keycode:	char_t
+	mode:		[ vi_insert, vi_normal, emacs ]
+    event: {
+        until: [
+          { send: menu name: completion_menu }
+          { send: menunext }
+        ]
+    }
+}]
+
