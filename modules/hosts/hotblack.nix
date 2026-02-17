@@ -46,7 +46,7 @@ in {
 					fsType			= "ext4";
 				};
 
-				filesystems."/data" = {
+				fileSystems."/data" = {
 					device			= "media";
 					fsType			= "zfs";
 
@@ -55,7 +55,7 @@ in {
 				};
 
 				# Fast nvme SSD
-				filesystems."/mnt/data" = {
+				fileSystems."/mnt/data" = {
 					device			= "/dev/disk/by-uuid/7c0c654c-ed5a-4ee8-afa7-60ba53934361";
 					fsType			= "ext4";
 					depends			= [ "/" ];
