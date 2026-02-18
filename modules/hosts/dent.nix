@@ -57,14 +57,17 @@ in {
 					fsType			= "ext4";
 				};
 
+				fileSystems."/data" = {
+					device			= "/dev/nvme1n1p1";
+					fsType			= "ext4";
+
+					depends			= [ "/" ];
+					options			= [ "nofail" ];
+				};
+
 				boot.initrd.luks.devices = {
 					"luks-3d83c353-b63b-413c-8f84-6a84ace5569a" = {
 						device			= "/dev/disk/by-uuid/3d83c353-b63b-413c-8f84-6a84ace5569a";
-						allowDiscards	= true;
-					};
-
-					"luks-d81962c8-e3d0-422b-8ff1-918452b9857f" = {
-						device			= "/dev/disk/by-uuid/d81962c8-e3d0-422b-8ff1-918452b9857f";
 						allowDiscards	= true;
 					};
 				};
