@@ -78,7 +78,9 @@ in {
 			}
 
 			# Networking
-			{
+			({ pkgs, ... }: {
+				networking.hostName = "${name}";
+
 				# Enable networking, with DHCP and a bridge device
 				networking.useDHCP						= false;
 
@@ -113,7 +115,7 @@ in {
 					description	= "Set needed options for the br0 interface";
 					script		= "${pkgs.ethtool}/bin/ethtool -K br0 rx-udp-gro-forwarding on rx-gro-list off";
 				};
-			}
+			})
 		];
 	};
 }

@@ -73,14 +73,14 @@
 				};
 			};
 
-			age.secrets.hostblack-cloudflare-user = {
-				file			= ./../../secrets/hotblack-cloudflare-user.age;
+			age.secrets.hotblack-cloudflare-user = {
+				file			= ./../../../secrets/hotblack-cloudflare-user.age;
 				owner			= "root";
 				group			= "users";
 				mode			= "400";
 			};
-			age.secrets.hostblack-cloudflare-key = {
-				file			= ./../../secrets/hotblack-cloudflare-key.age;
+			age.secrets.hotblack-cloudflare-key = {
+				file			= ./../../../secrets/hotblack-cloudflare-key.age;
 				owner			= "root";
 				group			= "users";
 				mode			= "400";

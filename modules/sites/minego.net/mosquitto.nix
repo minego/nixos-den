@@ -28,7 +28,7 @@
 			};
 
 			age.secrets.mosquitto = {
-				file			= ./../../secrets/mosquitto.age;
+				file			= ./../../../secrets/mosquitto.age;
 				owner			= "root";
 				group			= "users";
 				mode			= "440";
